@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title> TO DO LIST </title>
+    <link rel="stylesheet" href="to do  list.css">
+</head>
+
+<body>
+
+
+<h1>Todo List Practice 1</h1>
+
+<div class = "main">
+<input class = "enter" placeholder="Todo name" onkeydown=" if(event.key==='Enter'){writeto();}"></input>
+
+<input class = "time" type = "date"></input>
+
+<button class = "add" onclick="writeto()">add</button>
+
+</div>
+
+
+<div class = "main1"></div>
+
+
+<script>
+
+    let mylist = []
+
+
+    function writeto(){
+        let mylisthtml=''
+        let item = document.querySelector(".enter").value;
+        let time = document.querySelector(".time").value;
+        mylist.push([item,time]);
+        console.log(mylist);
+        document.querySelector(".enter").value="";
+        for(let i = 0 ; i<mylist.length;i++){
+            const item = mylist[i][0];
+            const time = mylist[i][1];
+            const itemnum = i;
+            const html = `<div class = "mainunder">
+                <div class = "itemdiv">${item}</div>
+                <div class = "timediv">${time}</div>
+                <div><button class = "del" onclick = "dele(${itemnum});">delete</button>
+                </div>
+                </div>`;
+            
+            mylisthtml+=html;
+        }
+
+        document.querySelector(".main1").innerHTML=mylisthtml;
+        
+    
+    }
+
+    function dele(i){
+        mylist.splice(i,1);
+        console.log(mylist);
+        let mylisthtml=''
+        for(let i = 0 ; i<mylist.length;i++){
+            const item = mylist[i][0];
+            const time = mylist[i][1];
+            const itemnum = i;
+            const html = `<div class = "mainunder">
+                <div class = "itemdiv">${item}</div>
+                <div class = "timediv">${time}</div>
+                <div><button class = "del" onclick = "dele(${itemnum});">delete</button>
+                </div>
+                </div>`;
+            
+            mylisthtml+=html;
+        }
+
+        document.querySelector(".main1").innerHTML=mylisthtml;
+        
+    }
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+
+</html>
